@@ -1,0 +1,41 @@
+<template>
+	<lightning-card>
+		<div class="slds-m-around_medium">
+			<h1 class="slds-text-heading_large">Exemplo básica de organização de dados</h1>
+
+			<h2 class="slds-text-heading_medium">Meus pokemons</h2>
+			<ul>
+				<!--
+					template for:each pega uma lista de valores e acessa valores
+					de maneira independente. for:item será a variável que recebe o objeto
+					de maneira individual a cada repetição
+				-->
+				<template for:each={pokemons} for:item="pokemon">
+					<li key={pokemon.id}>
+						{pokemon.name}, tipo: {pokemon.tipo} e nivel: {pokemon.nivel}
+					</li>
+				</template>
+			</ul>
+
+			<h2 class="slds-text-heading_medium">Quem é esse Pokemon?</h2>
+			<img src={img} onclick={handleClick}>
+
+			<!--
+				Accordion Pokemon
+			-->
+
+			<h2 class="slds-text-heading_medium">PokeDeks</h2>
+			<lightning-accordion class="example-accordion" active-section-name="Charmander">
+				<template for:each={pokemons} for:item="pokemon">
+					<lightning-accordion-section name={pokemon.name} label={pokemon.name} key={pokemon.id}>
+						<p>Dados do Pokemon</p>
+						<p>Nome: {pokemon.name}</p>
+						<p>Tipo: {pokemon.tipo}</p>
+						<p>nivel: {pokemon.nivel}</p>
+					</lightning-accordion-section>
+
+				</template>
+			</lightning-accordion>
+		</div>
+	</lightning-card>
+</template>
